@@ -1,20 +1,51 @@
 import React, { Component } from "react";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  Image,
+  Stack,
+  Heading,
+  Text,
+  Divider,
+  CardFooter,
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 export class Newsitem extends Component {
   render() {
+    let { title, discription, imageUrl, newsUrl, author, publishedAt } =
+      this.props;
     return (
-      <div className="card" style={this.props.style}>
-        <img className="card-img-top" src="logo192.png" alt="Card image cap" />
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="/" className="btn btn-primary">
-            Go somewhere
-          </a>
-        </div>
-      </div>
+      <>
+        <Card maxW="sm">
+          <CardBody>
+            <Image
+              src={
+                !imageUrl
+                  ? "https://c.ndtvimg.com/2023-10/bt5dbdgo_pm-modi-rajasthan_625x300_05_October_23.jpg"
+                  : imageUrl
+              }
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+              height={400}
+            />
+            <Stack mt="4" spacing="1">
+              <Heading size="md">{title}</Heading>
+              <Text>{discription}</Text>
+              <Text color="blue.600" fontSize="1xl">
+                by:{author} on {publishedAt}
+              </Text>
+            </Stack>
+          </CardBody>
+          <Divider />
+          <CardFooter>
+            <Link to={newsUrl} className="btn btn-primary">
+              Read more
+            </Link>
+          </CardFooter>
+        </Card>
+      </>
     );
   }
 }
